@@ -2,7 +2,12 @@ const admin = require('firebase-admin');
 const axios = require('axios');
 
 if (!admin.apps.length) {
-  admin.initializeApp();
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT);
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
 }
 
 module.exports = async function handler(req, res) {
