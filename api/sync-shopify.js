@@ -51,7 +51,13 @@ module.exports = async function handler(req, res) {
 
     return res.status(200).json({ success: true, shopifyCustomer: response.data.customer });
   } catch (error) {
-    console.error('Error syncing to Shopify:', error.response?.data || error.message);
-    return res.status(500).json({ error: 'Internal Server Error' });
+    const errorMessage = error.response?.data || error.message;
+console.error('Shopify API Error:', errorMessage);
+
+return res.status(500).json({
+  error: 'Shopify API Error',
+  details: errorMessage
+});
+
   }
 }
