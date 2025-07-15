@@ -3,8 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "vercel dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "dependencies": {
-    "axios": "^1.6.0",
-    "firebase-admin": "^11.10.1"
+    "axios": "^1.6.7",  // Updated to latest 1.6.x
+    "firebase-admin": "^11.11.0"  // Updated to latest 11.x
+  },
+  "devDependencies": {
+    "vercel": "^34.0.0"  // Required for `vercel dev` testing
+  },
+  "engines": {
+    "node": ">=18.x"  // Vercel recommends Node 18+
   }
 }
