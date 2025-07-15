@@ -10,7 +10,7 @@ if (!admin.apps.length) {
 
 module.exports = async function handler(req, res) {
   // ✅ CORS HEADERS
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "https://nycsleek-otp-login-2efe5.web.app");
   res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
