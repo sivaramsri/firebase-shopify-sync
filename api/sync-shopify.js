@@ -72,26 +72,29 @@ const handler = async (req, res) => {
         );
       } else {
         // Create new customer
-        const createResponse = await axios.post(
-          `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2024-04/customers.json`,
-          {
-            customer: {
-              email: email,
-              first_name: displayName.split(' ')[0],
-              last_name: displayName.split(' ')[1] || '',
-              tags: 'firebase-auth',
-              verified_email: true,
-              password: generateRandomPassword(),
-              password_confirmation: generateRandomPassword()
-            }
-          },
-          {
-            headers: {
-              'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_TOKEN,
-              'Content-Type': 'application/json'
-            }
-          }
-        );
+       const randomPassword = generateRandomPassword();
+
+const createResponse = await axios.post(
+  `https://${process.env.SHOPIFY_STORE_DOMAIN}/admin/api/2024-04/customers.json`,
+  {
+    customer: {
+      email: email,
+      first_name: displayName.split(' ')[0],
+      last_name: displayName.split(' ')[1] || '',
+      tags: 'firebase-auth',
+      verified_email: true,
+      password: randomPassword,
+      password_confirmation: randomPassword
+    }
+  },
+  {
+    headers: {
+      'X-Shopify-Access-Token': process.env.SHOPIFY_ADMIN_TOKEN,
+      'Content-Type': 'application/json'
+    }
+  }
+);
+
         customer = createResponse.data.customer;
       }
 
